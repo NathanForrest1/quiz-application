@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Online Quiz Application</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+    }
+    form {
+        max-width: 600px;
+        margin: 0 auto;
+    }
+    .question {
+        margin-bottom: 20px;
+    }
+    .options label {
+        display: block;
+        margin-bottom: 10px;
+    }
+    .result {
+        font-size: 25px;
+        margin-top: 20px;
+        font-weight: bold;
+    }
+</style>
+</head>
+<body>
+    <!-- Quiz Questions -->
+<form id="quizForm">
+    <div class="question">
+        <p>1. What is the capital of Kansas?</p>
+        <div class="options">
+            <label><input type="radio" name="q1" value="wichita"> Wichita</label>
+            <label><input type="radio" name="q1" value="salina"> Salina</label>
+            <label><input type="radio" name="q1" value="topeka"> Topeka</label>
+        </div>
+    </div>
+    <div class="question">
+        <p>2. What is the largest planet in our solar system?</p>
+        <div class="options">
+            <label><input type="radio" name="q2" value="saturn"> Saturn</label>
+            <label><input type="radio" name="q2" value="earth"> Earth</label>
+            <label><input type="radio" name="q2" value="jupiter"> Jupiter</label>
+        </div>
+    </div>
+    <div class="question">
+        <p>3. How many states are in the United States?</p>
+        <div class="options">
+            <label><input type="radio" name="q3" value="fifty"> Fifty</label>
+            <label><input type="radio" name="q3" value="fourty"> Fourty</label>
+            <label><input type="radio" name="q3" value="sixty"> Sixty</label>
+        </div>
+    </div>
+    <div class="question">
+        <p>4. Who is the first president of the United States?</p>
+        <div class="options">
+            <label><input type="radio" name="q4" value="thomas jefferson"> Thomas Jefferson</label>
+            <label><input type="radio" name="q4" value="george washington"> George Washington</label>
+            <label><input type="radio" name="q4" value="james jadison"> James Madison</label>
+        </div>
+    </div>
+    <div class="question">
+        <p>5. What is the first planet in the solar system?</p>
+        <div class="options">
+            <label><input type="radio" name="q5" value="mars"> Mars</label>
+            <label><input type="radio" name="q5" value="venus"> Venus</label>
+            <label><input type="radio" name="q5" value="mercury"> Mercury</label>
+        </div>
+    </div>
+
+    <button type="button" onclick="calculateScore()">Submit</button>
+</form>
+
+<div id="result" class="result"></div>
+
+<script>
+function calculateScore() {
+    // Initialize score
+    let score = 0;
+
+    // Get form element
+    const quizForm = document.getElementById('quizForm');
+
+    // Loop through each question
+    for (let i = 0; i < quizForm.elements.length; i++) {
+        const element = quizForm.elements[i];
+
+        // Check if it's a radio button (option)
+        if (element.type === 'radio' && element.checked) {
+            // Check the value (correct answer)
+            if (element.name === 'q1' && element.value === 'topeka') {
+                score++;
+            }
+            if (element.name === 'q2' && element.value === 'jupiter') {
+                score++;
+            }
+            if (element.name === 'q3' && element.value === 'fifty') {
+                score++;
+            }
+            if (element.name === 'q4' && element.value === 'george washington') {
+                score++;
+            }
+            if (element.name === 'q5' && element.value === 'mercury') {
+                score++;
+            }
+        }
+    }
+
+    // Display the score
+    const resultDiv = document.getElementById('result');
+    resultDiv.textContent = 'Your score: ' + score + ' out of 5';
+}
+</script>
+</body>
+</html>
